@@ -1,10 +1,5 @@
 const { Builder, By, until } = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
-const path = require('path');
-
-// Manually set the path to ChromeDriver
-const chromeDriverPath = 'C:/webdrivers/chromedriver.exe';  // Adjust to the correct path where you placed chromedriver.exe
-const service = new chrome.ServiceBuilder(chromeDriverPath).build();
 
 const options = new chrome.Options();
 options.addArguments('headless');  // Optional: run in headless mode
@@ -19,8 +14,7 @@ describe('Selenium with Jest - Capture Screenshots', () => {
     driver = await new Builder()
       .forBrowser('chrome')
       .setChromeOptions(options)
-      .setChromeService(service)  // Pass the service directly to the Builder
-      .build();
+      .build();  // No need to set the service if ChromeDriver is in PATH
   });
 
   // After all tests, quit the browser
